@@ -18,7 +18,7 @@ export default function Hero() {
       >
         <source src="/hero.mp4" type="video/mp4" />
       </video>
-      <RenownedSection/>
+      
     </section>
   );
 }
