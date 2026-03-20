@@ -1,5 +1,6 @@
 'use client';
 import * as React from "react"
+import Link from "next/link"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, ChevronRight } from "lucide-react"
@@ -38,7 +39,13 @@ const Header = ({ isHomePage = false }) => {
   const [scrolled, setScrolled] = useState(false)
   const [activeLink, setActiveLink] = useState("Home")
 
-  const navLinks = ["Home", "Administration", "Faculty", "Parents & Students", "Photo Gallery"]
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "Administration", href: "/administration" },
+    { label: "Faculty", href: "/faculty" },
+    { label: "Parents & Students", href: "/parents-&-students" },
+    { label: "Photo Gallery", href: "/photo-gallery" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -58,32 +65,33 @@ const Header = ({ isHomePage = false }) => {
         <div className="flex items-center justify-between h-24 w-full">
           {/* Logo + Nav Grouped */}
           <div className="flex items-center gap-6">
-            <a href="/" className="flex items-center gap-12">
+            <a href="/" className="flex items-center gap-4">
               <img src="/logo.jpeg" alt="Little Berries Logo" className="h-16 w-16 rounded-full shadow" />
+              <span className="text-2xl font-extrabold text-purple-900 tracking-tight whitespace-nowrap">Little Berries</span>
             </a>
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center space-x-12">
               {navLinks.map((item, index) => (
                 <motion.div
-                  key={item}
+                  key={item.label}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                 >
-                  <a
-                    href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
-                    onClick={() => setActiveLink(item)}
+                  <Link
+                    href={item.href}
+                    onClick={() => setActiveLink(item.label)}
                     className={`relative text-xl font-bold transition-all duration-300 group whitespace-nowrap ${
-                      activeLink === item ? "text-[#ffe066]" : "text-black hover:text-[#ffe066]"
+                      activeLink === item.label ? "text-[#ffe066]" : "text-black hover:text-[#ffe066]"
                     }`}
                   >
-                    {item}
+                    {item.label}
                     <span
                       className={`absolute -bottom-1 left-0 h-0.5 bg-[#ffe066] transition-all duration-300 ${
-                        activeLink === item ? "w-full" : "w-0 group-hover:w-full"
+                        activeLink === item.label ? "w-full" : "w-0 group-hover:w-full"
                       }`}
                     />
-                  </a>
+                  </Link>
                 </motion.div>
               ))}
             </nav>
@@ -115,7 +123,7 @@ const Header = ({ isHomePage = false }) => {
             onClick={() => setIsOpen(!isOpen)}
             whileTap={{ scale: 0.9 }}
           >
-            <Menu className="h-5 w-5 text-white" />
+            <Menu className="h-5 w-5 text-black" />
           </motion.button>
         </div>
       </div>
@@ -153,11 +161,11 @@ const Header = ({ isHomePage = false }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-green-500 to-green-300 flex items-center justify-center border-2 border-yellow-400">
-                  <span className="text-2xl">🍓</span>
+                <div className="flex flex-col items-center">
+                  <img src="/logo.jpeg" alt="Little Berries Logo" className="h-14 w-14 rounded-full shadow mb-1" />
+                  <span className="text-xl font-extrabold tracking-wide text-black">Little Berries</span>
+                  <p className="text-xs text-yellow-300 italic">Brings Out The Best in You...</p>
                 </div>
-                <h2 className="text-xl font-extrabold tracking-wide mt-2 text-black">Little Berries</h2>
-                <p className="text-xs text-yellow-300 italic">Brings Out The Best in You...</p>
               </motion.div>
 
               {navLinks.map((item, i) => (

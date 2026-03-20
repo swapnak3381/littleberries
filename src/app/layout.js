@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://littleberries.com"),
   title: "Little Berries Playschool | Joyful Early Learning in [Your City]",
   description: "Little Berries Playschool offers a nurturing, creative, and safe environment for children to learn, play, and grow. Discover our activities, achievements, and caring staff.",
   keywords: [

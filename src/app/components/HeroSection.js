@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full h-screen bg-[#cfe8f7] overflow-hidden flex items-center">
+    <section className="relative w-full min-h-screen bg-[#cfe8f7] overflow-hidden flex items-center py-24 md:py-0">
       {/* Content Wrapper */}
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-6 z-10">
         {/* Left Image — slow reveal */}
@@ -15,9 +15,9 @@ export default function HeroSection() {
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
           <img
-            src="/hero.png"
+            src="/hero1.png"
             alt="Kids Playing"
-            className="w-[90%] max-w-md"
+            className="w-[55%] md:w-[75%] max-w-xs md:max-w-sm max-h-[45vh] md:max-h-[60vh] object-contain"
           />
         </motion.div>
 
@@ -39,20 +39,6 @@ export default function HeroSection() {
           </button>
         </motion.div>
       </div>
-
-      {/* 🔴 Circled area — hero1.png image (top-right) */}
-      <motion.div
-        className="absolute top-[100px] right-[60px] z-20"
-        initial={{ opacity: 0, scale: 0.6 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.0, delay: 0.8, type: "spring", stiffness: 140 }}
-      >
-        <img
-          src="/hero1.png"
-          alt="Hero Character"
-          className="w-48 h-48 object-contain drop-shadow-xl"
-        />
-      </motion.div>
 
       {/* 🌊 CURVED BOTTOM CUT */}
       <div className="absolute bottom-0 left-0 w-full">

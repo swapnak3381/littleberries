@@ -132,12 +132,12 @@ export default function RenownedSection() {
                   >
                     {p.label}
                   </span>
-                  <span
+{/*                   <span
                     className="ml-auto text-xs font-bold px-3 py-1 rounded-full text-white"
                     style={{ background: p.color }}
                   >
                     Enrolling
-                  </span>
+                  </span> */}
                 </div>
               ))}
             </div>
@@ -209,11 +209,11 @@ export default function RenownedSection() {
               style={{ animation: "seesawTilt 3s ease-in-out infinite alternate" }}
             >
               <Image
-                src="/school.jpg"
+                src="/hero.png"
                 alt="Kids playing at Little Berries playschool"
                 width={500}
                 height={400}
-                className="w-full h-auto object-contain drop-shadow-2xl"
+                className="w-full h-auto object-contain drop-shadow-2xl" style={{ width: "100%", height: "auto" }}
                 priority
               />
             </div>
@@ -223,12 +223,12 @@ export default function RenownedSection() {
               className="absolute top-4 -left-6 flex items-center gap-3 bg-white/95 backdrop-blur-md border-2 border-yellow-300 rounded-2xl px-4 py-3 shadow-xl shadow-yellow-200/50 z-20"
               style={{ animation: "cardFloat 4s ease-in-out infinite alternate" }}
             >
-              <span className="text-2xl">🏆</span>
+              <span className="text-2xl">🌟</span>
               <div>
                 <div className="font-extrabold text-gray-800 text-sm leading-tight" style={{ fontFamily: "'Baloo 2', cursive" }}>
                   Best Playschool
                 </div>
-                <div className="text-[0.68rem] text-purple-600 font-bold">2024 Award</div>
+{/*                 <div className="text-[0.68rem] text-purple-600 font-bold">2024 Award</div> */}
               </div>
             </div>
 
@@ -249,12 +249,18 @@ export default function RenownedSection() {
               className="absolute -bottom-5 left-1/2 -translate-x-1/2 z-20"
               style={{ animation: "popIn 0.7s cubic-bezier(0.34,1.56,0.64,1) 1.1s both" }}
             >
-              <div
-                className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white font-extrabold text-sm px-6 py-3 rounded-full shadow-xl shadow-red-300/50 border-2 border-white whitespace-nowrap"
-                style={{ fontFamily: "'Baloo 2', cursive", animation: "admissionPulse 2s ease-in-out infinite alternate" }}
-              >
-                🎒 Admissions Open 2025–26!
-              </div>
+              {(() => {
+                const year = new Date().getFullYear();
+                const nextYear = (year + 1).toString().slice(-2);
+                return (
+                  <div
+                    className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white font-extrabold text-sm px-6 py-3 rounded-full shadow-xl shadow-red-300/50 border-2 border-white whitespace-nowrap"
+                    style={{ fontFamily: "'Baloo 2', cursive", animation: "admissionPulse 2s ease-in-out infinite alternate" }}
+                  >
+                    🎒 Admissions Open {year}–{nextYear}!
+                  </div>
+                );
+              })()}
             </div>
           </div>
         </div>
@@ -263,65 +269,7 @@ export default function RenownedSection() {
       {/* ═══════════════════════════════════
           BOTTOM BAND — deep purple pamphlet
       ═══════════════════════════════════ */}
-      <div className="relative bg-gradient-to-r from-purple-800 via-indigo-800 to-purple-900 py-10 px-6 overflow-hidden">
 
-        {/* Wave top */}
-        <div className="absolute top-0 left-0 w-full leading-none overflow-hidden">
-          <svg viewBox="0 0 1440 56" preserveAspectRatio="none" className="w-full h-14">
-            <path d="M0,28 C400,65 1040,0 1440,32 L1440,0 L0,0 Z" fill="#eef2ff" />
-          </svg>
-        </div>
-
-        {/* Decorative glows */}
-        <div className="absolute -top-8 right-24 w-40 h-40 rounded-full bg-yellow-400/15 blur-2xl pointer-events-none" />
-        <div className="absolute bottom-0 left-10  w-32 h-32 rounded-full bg-yellow-300/10 blur-xl pointer-events-none" />
-
-        <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 pt-8">
-
-          {/* Address */}
-          <div className="flex items-start gap-4 text-white"
-            style={{ animation: "fadeUp 0.7s ease 0.2s both" }}>
-            <span className="text-3xl mt-1">📍</span>
-            <div>
-              <p className="font-extrabold text-yellow-300 text-sm uppercase tracking-widest mb-1"
-                style={{ fontFamily: "'Baloo 2', cursive" }}>Our Location</p>
-              <p className="text-white/85 text-sm leading-relaxed">
-                H. No. 5-77/149/Part-A, Nearby Nandanavanam Apartment,<br />
-                Durga Nagar, Krishtareddipet
-              </p>
-            </div>
-          </div>
-
-          <div className="hidden md:block w-px h-16 bg-white/20" />
-
-          {/* Phone CTA */}
-          <div className="flex flex-col items-center gap-2"
-            style={{ animation: "fadeUp 0.7s ease 0.35s both" }}>
-            <p className="text-yellow-300 text-xs font-extrabold uppercase tracking-widest"
-              style={{ fontFamily: "'Baloo 2', cursive" }}>Contact Now</p>
-            <a
-              href="tel:7989523822"
-              className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-gray-900 font-extrabold text-lg px-7 py-3 rounded-full shadow-lg shadow-yellow-400/30 transition-all duration-200 hover:-translate-y-0.5"
-              style={{ fontFamily: "'Baloo 2', cursive" }}
-            >
-              📱 7989523822
-            </a>
-          </div>
-
-          <div className="hidden md:block w-px h-16 bg-white/20" />
-
-          {/* CCTV note */}
-          <div className="flex items-center gap-3 text-white"
-            style={{ animation: "fadeUp 0.7s ease 0.5s both" }}>
-            <span className="text-4xl">📹</span>
-            <div>
-              <p className="font-extrabold text-yellow-300 text-sm"
-                style={{ fontFamily: "'Baloo 2', cursive" }}>CCTV Camera</p>
-              <p className="text-white/75 text-xs font-bold uppercase tracking-wider">Surveillance</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* ── All custom keyframes ── */}
       <style>{`
