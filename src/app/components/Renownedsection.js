@@ -213,7 +213,7 @@ export default function RenownedSection() {
                 alt="Kids playing at Little Berries playschool"
                 width={500}
                 height={400}
-                className="w-full h-auto object-contain drop-shadow-2xl"
+                className="w-full h-auto object-contain drop-shadow-2xl" style={{ width: "100%", height: "auto" }}
                 priority
               />
             </div>
