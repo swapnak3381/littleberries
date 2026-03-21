@@ -3,103 +3,189 @@
 import { useState } from "react";
 
 const css = `
-  .contact-page {
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .cp {
     min-height: 100vh;
-    background: #f8fafc;
+    background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding: 0 16px 40px;
-    font-family: 'Segoe UI', 'Nunito', sans-serif;
+    padding: 40px 16px 60px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
-  .contact-hero {
+
+  .cp-hero {
     width: 100%;
-    max-width: 700px;
-    margin: 0 auto 32px;
-    background: #fff;
-    color: #1e293b;
-    border-radius: 24px;
-    padding: 36px 20px 28px;
-    box-shadow: 0 2px 24px rgba(37,99,235,0.06);
+    max-width: 620px;
     text-align: center;
+    margin-bottom: 32px;
   }
-  .contact-title {
-    font-size: clamp(26px, 4vw, 38px);
-    font-weight: 900;
-    margin-bottom: 8px;
-    color: #2563eb;
+  .cp-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: 14px;
   }
-  .contact-sub {
-    font-size: clamp(13px, 2vw, 17px);
+  .cp-title {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .cp-title span { color: #2563eb; }
+  .cp-sub {
+    font-size: clamp(14px, 2.2vw, 16px);
     color: #64748b;
-    margin-bottom: 0;
-  }
-  .contact-form {
-    width: 100%;
+    line-height: 1.6;
     max-width: 480px;
-    background: #fff;
-    border-radius: 14px;
-    padding: 28px 16px 20px;
-    box-shadow: 0 1px 10px rgba(0,0,0,0.05);
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
+  }
+
+  .cp-card {
+    width: 100%;
+    max-width: 540px;
+    background: #fff;
+    border-radius: 20px;
+    padding: clamp(24px, 5vw, 40px) clamp(20px, 5vw, 36px);
+    box-shadow: 0 4px 32px rgba(37,99,235,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    border: 1px solid #e2e8f0;
+  }
+
+  .cp-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 14px;
   }
-  .contact-label {
+  @media (max-width: 480px) {
+    .cp-row { grid-template-columns: 1fr; }
+  }
+  .cp-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .cp-field:last-child { margin-bottom: 0; }
+
+  .cp-label {
+    font-size: 13px;
     font-weight: 700;
     color: #334155;
-    margin-bottom: 4px;
-    font-size: 14px;
+    letter-spacing: 0.02em;
   }
-  .contact-input, .contact-textarea {
+  .cp-label span { color: #ef4444; margin-left: 2px; }
+
+  .cp-input, .cp-textarea {
     width: 100%;
-    padding: 9px 11px;
-    border-radius: 7px;
-    border: 1.2px solid #cbd5e1;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
     font-size: 14px;
     font-family: inherit;
-    margin-bottom: 6px;
-    background: #f1f5f9;
-    transition: border 0.2s;
+    background: #f8fafc;
+    color: #0f172a;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
   }
-  .contact-input:focus, .contact-textarea:focus {
+  .cp-input:focus, .cp-textarea:focus {
     border-color: #2563eb;
-    outline: none;
     background: #fff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
   }
-  .contact-btn {
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 7px;
-    padding: 11px 0;
-    font-weight: 800;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: background 0.2s;
-  }
-  .contact-btn:hover {
-    background: #1e40af;
-  }
-  .contact-success {
-    color: #16a34a;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 10px;
-    font-size: 15px;
-  }
-  .contact-consent {
+  .cp-input::placeholder, .cp-textarea::placeholder { color: #94a3b8; }
+  .cp-textarea { resize: vertical; min-height: 100px; }
+
+  .cp-consent {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
-    font-size: 13px;
+    gap: 10px;
+    font-size: 12.5px;
     color: #64748b;
+    line-height: 1.55;
+    margin-top: 4px;
+  }
+  .cp-consent input[type="checkbox"] {
+    accent-color: #2563eb;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
     margin-top: 2px;
+    cursor: pointer;
+  }
+
+  .cp-divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 20px 0;
+  }
+
+  .cp-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .cp-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+  }
+  .cp-btn-primary { background: #2563eb; color: #fff; }
+  .cp-btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.25); }
+  .cp-btn-primary:active { transform: translateY(0); }
+  .cp-btn-primary:disabled { background: #93c5fd; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .cp-toast {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    margin-top: 16px;
+    animation: slideIn 0.3s ease;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .cp-toast-success { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+  .cp-toast-error   { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+
+  @media (max-width: 360px) {
+    .cp { padding: 24px 12px 40px; }
+    .cp-btn { min-width: 100%; }
+    .cp-actions { flex-direction: column; }
   }
 `;
+
+// ✅ Your Google Apps Script Web App URL (no frontend URL needed — no-cors handles it)
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbwJz_ZfBbi7Qq8yib67FZWZUMT1jbNDiG5LXfb_P23bDPEyeNbAIw1zXUNtrdUDUS0MDg/exec";
+
+async function sendToGoogleSheet(data) {
+  // mode: "no-cors" is required for Google Apps Script.
+  // The response will be opaque (unreadable) but the POST goes through fine.
+  // No frontend URL whitelisting is needed on the Apps Script side.
+  await fetch(GOOGLE_SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+}
 
 export default function ContactUs() {
   const [form, setForm] = useState({
@@ -109,81 +195,126 @@ export default function ContactUs() {
     message: "",
     consent: false,
   });
-  const [success, setSuccess] = useState("");
+  const [toast, setToast] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  function showToast(msg, type = "success") {
+    setToast({ msg, type });
+    setTimeout(() => setToast(null), 4000);
+  }
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    setForm((p) => ({ ...p, [name]: type === "checkbox" ? checked : value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (!form.consent) {
-      setSuccess("Please provide consent to receive updates.");
+
+    if (!form.email || !form.childName || !form.childAge || !form.message) {
+      showToast("Please fill in all required fields.", "error");
       return;
     }
-    setSuccess("Thank you for contacting us! We'll get back to you soon.");
-    setForm({ email: "", childName: "", childAge: "", message: "", consent: false });
+    if (!form.consent) {
+      showToast("Please check the consent box to continue.", "error");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      await sendToGoogleSheet({
+        email: form.email,
+        childName: form.childName,
+        childAge: Number(form.childAge),
+        message: form.message,
+        consent: form.consent,
+      });
+
+      setForm({ email: "", childName: "", childAge: "", message: "", consent: false });
+      showToast("✓ Message sent! We'll be in touch soon.");
+    } catch (err) {
+      console.error(err);
+      showToast("Submission failed. Please check your connection and try again.", "error");
+    }
+    setSubmitting(false);
   }
 
   return (
-    <div className="contact-page">
+    <div className="cp">
       <style>{css}</style>
-      <div className="contact-hero">
-        <h1 className="contact-title">Contact Us</h1>
-        <p className="contact-sub">
-          We'd love to hear from you! Please fill out the form below and our team will reach out to you soon.
+
+      <div className="cp-hero">
+        <span className="cp-badge">Get in Touch</span>
+        <h1 className="cp-title">
+          Contact <span>Little Berries</span>
+        </h1>
+        <p className="cp-sub">
+          Have a question about our programs? Fill out the form and our team
+          will reach out to you shortly.
         </p>
       </div>
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <div>
-          <label className="contact-label" htmlFor="email">Your Email</label>
+
+      <div className="cp-card">
+        {/* Email */}
+        <div className="cp-field">
+          <label className="cp-label" htmlFor="email">
+            Your Email <span>*</span>
+          </label>
           <input
-            className="contact-input"
-            type="email"
+            className="cp-input"
             id="email"
             name="email"
+            type="email"
             value={form.email}
             onChange={handleChange}
             required
             placeholder="you@email.com"
           />
         </div>
-        <div>
-          <label className="contact-label" htmlFor="childName">Child's Name</label>
-          <input
-            className="contact-input"
-            type="text"
-            id="childName"
-            name="childName"
-            value={form.childName}
-            onChange={handleChange}
-            required
-            placeholder="Your Child's Name"
-          />
+
+        {/* Name + Age row */}
+        <div className="cp-row">
+          <div className="cp-field">
+            <label className="cp-label" htmlFor="childName">
+              Child's Name <span>*</span>
+            </label>
+            <input
+              className="cp-input"
+              id="childName"
+              name="childName"
+              type="text"
+              value={form.childName}
+              onChange={handleChange}
+              required
+              placeholder="Child's name"
+            />
+          </div>
+          <div className="cp-field">
+            <label className="cp-label" htmlFor="childAge">
+              Child's Age <span>*</span>
+            </label>
+            <input
+              className="cp-input"
+              id="childAge"
+              name="childAge"
+              type="number"
+              value={form.childAge}
+              onChange={handleChange}
+              min="0"
+              max="18"
+              required
+              placeholder="Age"
+            />
+          </div>
         </div>
-        <div>
-          <label className="contact-label" htmlFor="childAge">Child's Age</label>
-          <input
-            className="contact-input"
-            type="number"
-            id="childAge"
-            name="childAge"
-            value={form.childAge}
-            onChange={handleChange}
-            min="0"
-            max="18"
-            required
-            placeholder="Your Child's Age"
-          />
-        </div>
-        <div>
-          <label className="contact-label" htmlFor="message">Message</label>
+
+        {/* Message */}
+        <div className="cp-field">
+          <label className="cp-label" htmlFor="message">
+            Message <span>*</span>
+          </label>
           <textarea
-            className="contact-textarea"
+            className="cp-textarea"
             id="message"
             name="message"
             rows={4}
@@ -193,23 +324,44 @@ export default function ContactUs() {
             placeholder="How can we help you?"
           />
         </div>
-        <div className="contact-consent">
+
+        {/* Consent */}
+        <div className="cp-consent">
           <input
             type="checkbox"
             id="consent"
             name="consent"
             checked={form.consent}
             onChange={handleChange}
-            required
-            style={{ marginTop: 2 }}
           />
           <label htmlFor="consent">
-            I agree to receive updates and promotional content from Little Berries, including advertisements and important notifications in the future.
+            I agree to receive updates and promotional content from Little
+            Berries, including advertisements and important notifications.
           </label>
         </div>
-        <button className="contact-btn" type="submit">Send Message</button>
-        {success && <div className="contact-success">{success}</div>}
-      </form>
+
+        <hr className="cp-divider" />
+
+        <div className="cp-actions">
+          <button
+            className="cp-btn cp-btn-primary"
+            onClick={handleSubmit}
+            disabled={submitting}
+          >
+            {submitting ? "Sending…" : "✉ Send Message"}
+          </button>
+        </div>
+
+        {toast && (
+          <div
+            className={`cp-toast ${
+              toast.type === "error" ? "cp-toast-error" : "cp-toast-success"
+            }`}
+          >
+            {toast.msg}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
