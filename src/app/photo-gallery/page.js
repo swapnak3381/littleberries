@@ -58,6 +58,7 @@ function PhotoCard({ photo, index }) {
     <div
       ref={cardRef}
       className="pg-card"
+      data-index={index}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -67,6 +68,8 @@ function PhotoCard({ photo, index }) {
         transition: `opacity 0.6s ease ${delay}ms, transform 0.6s cubic-bezier(0.23,1,0.32,1) ${delay}ms, box-shadow 0.3s ease, border-color 0.3s ease`,
         boxShadow: hovered ? `0 16px 40px ${photo.color}25, 0 4px 12px rgba(0,0,0,0.07)` : "0 2px 10px rgba(0,0,0,0.06)",
         border: `1.5px solid ${hovered ? photo.color + "44" : "transparent"}`,
+        "--card-color": photo.color,
+        "--card-bg": photo.bg,
       }}
     >
       {/* ── Visual Zone ── */}
@@ -181,6 +184,16 @@ export default function PhotoGallery() {
         @keyframes pgMarquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
         @keyframes pgFloat   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
 
+        /* ── MOBILE-ONLY ANIMATIONS ── */
+        @keyframes mobileSlideLeft  { from{opacity:0;transform:translateX(-28px) scale(0.95)} to{opacity:1;transform:translateX(0) scale(1)} }
+        @keyframes mobileSlideRight { from{opacity:0;transform:translateX(28px) scale(0.95)}  to{opacity:1;transform:translateX(0) scale(1)} }
+        @keyframes mobilePopUp      { from{opacity:0;transform:translateY(32px) scale(0.93)} to{opacity:1;transform:translateY(0) scale(1)} }
+        @keyframes mobilePulseGlow  { 0%,100%{box-shadow:0 0 0 0 var(--card-color,#0EA5E9)22} 50%{box-shadow:0 0 18px 4px var(--card-color,#0EA5E9)22} }
+        @keyframes mobileShimmer    { 0%{background-position:-200% center} 100%{background-position:200% center} }
+        @keyframes mobileFilterPop  { 0%{transform:scale(0.88) translateY(6px);opacity:0} 70%{transform:scale(1.05) translateY(-2px)} 100%{transform:scale(1) translateY(0);opacity:1} }
+        @keyframes mobileBounceIn   { 0%{transform:scale(0.7);opacity:0} 60%{transform:scale(1.08)} 80%{transform:scale(0.97)} 100%{transform:scale(1);opacity:1} }
+        @keyframes mobileRipple     { 0%{transform:scale(0);opacity:0.5} 100%{transform:scale(4);opacity:0} }
+
         /* ── PAGE ── */
         .pg-section {
           background: #F0F9FF;
@@ -290,14 +303,237 @@ export default function PhotoGallery() {
           .pg-col-large { grid-column: span 6; }
           .pg-col-small { grid-column: span 3; }
         }
+
+        /* ═══════════════════════════════════════════════════════════
+           ██████  MOBILE STYLES — COMPLETELY REDESIGNED  ██████
+           ═══════════════════════════════════════════════════════════ */
         @media (max-width: 768px) {
-          .pg-grid { grid-template-columns: repeat(2, 1fr); }
-          .pg-col-large, .pg-col-small { grid-column: span 1; }
+
+          /* Section padding tighter on mobile */
+          .pg-section {
+            padding: 36px 14px 56px;
+          }
+
+          /* ── FILTER BAR: horizontal scroll pill strip ── */
+          .pg-filter-wrap {
+            padding: 0 0 20px;
+            margin: 0 -14px;
+          }
+          .pg-filter-bar {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            justify-content: flex-start;
+            padding: 12px 14px;
+            gap: 8px;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+            border-bottom: 1.5px solid rgba(14,165,233,0.10);
+            box-shadow: 0 4px 16px rgba(14,165,233,0.08);
+            width: 100%;
+            max-width: 100%;
+          }
+          .pg-filter-bar::-webkit-scrollbar { display: none; }
+          .pg-fb {
+            flex-shrink: 0;
+            font-size: 11px;
+            padding: 7px 14px;
+            border-radius: 24px;
+            animation: mobileFilterPop 0.4s cubic-bezier(0.23,1,0.32,1) both;
+          }
+          .pg-fb.on {
+            box-shadow: 0 4px 16px rgba(14,165,233,0.38), 0 0 0 3px rgba(14,165,233,0.12);
+            transform: scale(1.06);
+          }
+          .pg-fb:active {
+            transform: scale(0.93);
+            transition: transform 0.1s ease;
+          }
+
+          /* ── GRID: 2-column masonry-feel bento layout ── */
+          .pg-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 0;
+          }
+
+          /* Large cards span full width — feature card */
+          .pg-col-large {
+            grid-column: span 2;
+          }
+
+          /* Small cards — alternating slide-in animation */
+          .pg-col-small {
+            grid-column: span 1;
+          }
+
+          /* ── CARD: full mobile redesign ── */
+          .pg-card {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            animation: mobilePopUp 0.55s cubic-bezier(0.23,1,0.32,1) both;
+            transition:
+              transform 0.22s cubic-bezier(0.23,1,0.32,1),
+              box-shadow 0.22s ease,
+              border-color 0.22s ease !important;
+          }
+
+          /* Odd small cards slide from left */
+          .pg-col-small:nth-child(odd) .pg-card {
+            animation: mobileSlideLeft 0.55s cubic-bezier(0.23,1,0.32,1) both;
+          }
+          /* Even small cards slide from right */
+          .pg-col-small:nth-child(even) .pg-card {
+            animation: mobileSlideRight 0.55s cubic-bezier(0.23,1,0.32,1) both;
+          }
+          /* Large cards pop up */
+          .pg-col-large .pg-card {
+            animation: mobilePopUp 0.6s cubic-bezier(0.23,1,0.32,1) both;
+          }
+
+          /* Staggered animation delays per card */
+          .pg-card[data-index="0"] { animation-delay: 0ms }
+          .pg-card[data-index="1"] { animation-delay: 60ms }
+          .pg-card[data-index="2"] { animation-delay: 120ms }
+          .pg-card[data-index="3"] { animation-delay: 180ms }
+          .pg-card[data-index="4"] { animation-delay: 240ms }
+          .pg-card[data-index="5"] { animation-delay: 300ms }
+          .pg-card[data-index="6"] { animation-delay: 360ms }
+          .pg-card[data-index="7"] { animation-delay: 420ms }
+          .pg-card[data-index="8"] { animation-delay: 480ms }
+          .pg-card[data-index="9"] { animation-delay: 540ms }
+
+          /* Touch press active state */
+          .pg-card:active {
+            transform: scale(0.965) !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.10) !important;
+          }
+
+          /* ── LARGE card: horizontal layout ── */
+          .pg-col-large .pg-card {
+            flex-direction: row;
+            min-height: 130px;
+            border: 1.5px solid transparent;
+            background: #fff;
+            animation: mobilePopUp 0.6s cubic-bezier(0.23,1,0.32,1) both;
+          }
+          .pg-col-large .pg-card-visual {
+            width: 42%;
+            min-width: 42%;
+            height: auto !important;
+            min-height: 130px;
+            border-radius: 0;
+            flex-shrink: 0;
+          }
+          .pg-col-large .pg-card-visual.large {
+            height: auto !important;
+          }
+          .pg-col-large .pg-card-body {
+            flex: 1;
+            padding: 14px 14px 14px 12px;
+            justify-content: center;
+          }
+          .pg-col-large .pg-card-title {
+            font-size: 14px;
+            margin-bottom: 4px;
+          }
+          .pg-col-large .pg-card-desc {
+            font-size: 11px;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+
+          /* ── SMALL card: vertical, compact ── */
+          .pg-col-small .pg-card {
+            flex-direction: column;
+            border: 1.5px solid transparent;
+            background: #fff;
+          }
+          .pg-col-small .pg-card-visual {
+            height: 110px !important;
+            border-radius: 0;
+          }
+          .pg-col-small .pg-card-body {
+            padding: 10px 12px 12px;
+          }
+          .pg-col-small .pg-card-title {
+            font-size: 12px;
+            line-height: 1.25;
+          }
+          .pg-col-small .pg-card-desc {
+            font-size: 10px;
+            line-height: 1.45;
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            color: #8AACBC;
+          }
+          .pg-col-small .pg-card-bar {
+            margin-top: 8px;
+          }
+
+          /* Emoji sizes adjusted per card type */
+          .pg-col-large .pg-card-emoji { font-size: 52px !important; }
+          .pg-col-small .pg-card-emoji { font-size: 40px !important; }
+
+          /* Category pill — smaller on mobile */
+          .pg-cat-pill {
+            font-size: 8px !important;
+            padding: 2px 7px !important;
+            top: 8px !important;
+            left: 8px !important;
+          }
+
+          /* ── HEADER mobile tweaks ── */
+          .pg-title { font-size: 1.8rem; }
+          .pg-subtitle { font-size: 13px; }
+          .pg-header { padding-bottom: 24px; }
+
+          /* ── MARQUEE: slightly tighter ── */
+          .pg-marquee-wrap { margin: 28px 0; }
         }
+
+        /* ── Extra small phones ── */
         @media (max-width: 480px) {
-          .pg-grid { grid-template-columns: 1fr; gap: 12px; }
-          .pg-col-large, .pg-col-small { grid-column: span 1; }
+          .pg-section { padding: 28px 12px 48px; }
+
+          .pg-grid { gap: 10px; }
+
+          .pg-col-large .pg-card {
+            flex-direction: column;
+          }
+          .pg-col-large .pg-card-visual {
+            width: 100%;
+            min-height: 140px;
+            height: 140px !important;
+          }
+          .pg-col-large .pg-card-body {
+            padding: 12px 14px;
+          }
+          .pg-col-large .pg-card-title { font-size: 14px; }
+          .pg-col-large .pg-card-desc {
+            -webkit-line-clamp: 2;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          .pg-col-large .pg-card-emoji { font-size: 60px !important; }
+          .pg-col-small .pg-card-visual { height: 95px !important; }
+          .pg-col-small .pg-card-emoji { font-size: 36px !important; }
+          .pg-col-small .pg-card-title { font-size: 11px; }
         }
+
+        /* ═══════════════════════════════════════════════════════════
+           END MOBILE STYLES
+           ═══════════════════════════════════════════════════════════ */
 
         /* ── CARD ── */
         .pg-card {
@@ -318,14 +554,6 @@ export default function PhotoGallery() {
         }
         .pg-card-visual.large {
           height: clamp(180px, 26vw, 280px);
-        }
-        @media (max-width: 768px) {
-          .pg-card-visual,
-          .pg-card-visual.large { height: clamp(140px, 38vw, 220px); }
-        }
-        @media (max-width: 480px) {
-          .pg-card-visual,
-          .pg-card-visual.large { height: clamp(130px, 44vw, 190px); }
         }
 
         .pg-card-emoji {
