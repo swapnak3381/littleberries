@@ -188,13 +188,14 @@ const Header = ({ isHomePage = false }) => {
 
               {/* Admissions CTA */}
               <div className="px-4 pb-8">
-                <button
+                <Link
+                  href="/contactus"
                   className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 text-purple-900 font-extrabold shadow-lg border-2 border-yellow-300 flex items-center justify-center gap-2"
                   onClick={() => setIsOpen(false)}
                 >
                   <span>Admissions</span>
                   <ChevronRight size={16} />
-                </button>
+                </Link>
               </div>
             </motion.div>
           </>
