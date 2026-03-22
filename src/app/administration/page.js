@@ -271,7 +271,7 @@ export default function Administration() {
 
   {/* Background Image */}
   <img
-    src="/adminhero.png"
+    src="/adminrenowedhero.png"
     alt="Hero Background"
     className="absolute inset-0 w-full h-full object-cover z-0"
   />

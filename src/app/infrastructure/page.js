@@ -347,28 +347,7 @@ export default function InfrastructureSection() {
           ))}
         </div>
 
-        {/* ── Bottom CTA ── */}
-        <div className="mt-16 text-center">
-          <div
-            className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/70 backdrop-blur-sm rounded-3xl px-8 py-6 shadow-md border border-blue-100"
-          >
-            <div className="text-left">
-              <p className="text-lg font-black text-gray-800" style={{ fontFamily: "'Fredoka One', cursive" }}>
-                Want to see it in person? 🎉
-              </p>
-              <p className="text-sm text-gray-500" style={{ fontFamily: "'Nunito', sans-serif" }}>
-                Book a free campus tour and let your child explore!
-              </p>
-            </div>
-            <a
-              href="/contactus"
-              className="bg-blue-500 hover:bg-blue-400 text-white font-bold px-7 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 whitespace-nowrap"
-              style={{ fontFamily: "'Nunito', sans-serif", display: "inline-block", textDecoration: "none" }}
-            >
-              Contact us
-            </a>
-          </div>
-        </div>
+
       </div>
     </section>
   );

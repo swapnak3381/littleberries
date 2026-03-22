@@ -5,7 +5,7 @@ import { useState } from "react";
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .cp *, .cp *::before, .cp *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   .cp {
     min-height: 100vh;
@@ -51,9 +51,56 @@ const css = `
     margin: 0 auto;
   }
 
-  .cp-card {
+  /* ── Wrapper that holds both the mascot and the card ── */
+  .cp-card-wrapper {
+    position: relative;
     width: 100%;
     max-width: 540px;
+  }
+
+  /* ── Mascot kid ── */
+  .cp-mascot {
+    position: absolute;
+    bottom: -10px;
+    right: -100px;
+    width: 200px;
+    height: 240px;
+    z-index: 1;            /* BEHIND the card */
+    pointer-events: none;
+    filter: drop-shadow(-10px 12px 18px rgba(0,0,0,0.22));
+    animation: kidSlideIn 0.85s cubic-bezier(0.34,1.56,0.64,1) 0.4s both;
+  }
+  .cp-mascot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Speech bubble */
+  .cp-bubble {
+    position: absolute;
+    bottom: 235px;
+    left: 110%;
+    z-index: 2;             /* ABOVE kid, ABOVE card too for fun */
+    background: #fff;
+    border: 2.5px solid #2563eb;
+    border-radius: 16px 16px 16px 4px;
+    padding: 7px 13px;
+    font-size: 11px;
+    font-weight: 800;
+    color: #2563eb;
+    white-space: nowrap;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.18);
+    pointer-events: none;
+    animation: bubblePop 0.4s cubic-bezier(0.34,1.56,0.64,1) 1.3s both;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ── The form card sits on top (z-index: 2) ── */
+  .cp-card {
+    position: relative;
+    z-index: 2;             /* ABOVE the mascot */
+    width: 100%;
     background: #fff;
     border-radius: 20px;
     padding: clamp(24px, 5vw, 40px) clamp(20px, 5vw, 36px);
@@ -164,6 +211,21 @@ const css = `
   .cp-toast-success { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
   .cp-toast-error   { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
 
+  @keyframes kidSlideIn {
+    from { opacity: 0; transform: translateX(80px) rotate(-6deg); }
+    to   { opacity: 1; transform: translateX(0px)  rotate(-6deg); }
+  }
+  @keyframes bubblePop {
+    from { opacity: 0; transform: scale(0.5) translateY(8px); }
+    to   { opacity: 1; transform: scale(1)   translateY(0);   }
+  }
+
+  /* On small screens hide the mascot so it doesn't overlap the form */
+  @media (max-width: 680px) {
+    .cp-mascot  { display: none; }
+    .cp-bubble  { display: none; }
+  }
+
   @media (max-width: 360px) {
     .cp { padding: 24px 12px 40px; }
     .cp-btn { min-width: 100%; }
@@ -171,14 +233,10 @@ const css = `
   }
 `;
 
-// ✅ Your Google Apps Script Web App URL (no frontend URL needed — no-cors handles it)
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwJz_ZfBbi7Qq8yib67FZWZUMT1jbNDiG5LXfb_P23bDPEyeNbAIw1zXUNtrdUDUS0MDg/exec";
 
 async function sendToGoogleSheet(data) {
-  // mode: "no-cors" is required for Google Apps Script.
-  // The response will be opaque (unreadable) but the POST goes through fine.
-  // No frontend URL whitelisting is needed on the Apps Script side.
   await fetch(GOOGLE_SCRIPT_URL, {
     method: "POST",
     mode: "no-cors",
@@ -243,6 +301,7 @@ export default function ContactUs() {
     <div className="cp">
       <style>{css}</style>
 
+      {/* ── Hero text ── */}
       <div className="cp-hero">
         <span className="cp-badge">Get in Touch</span>
         <h1 className="cp-title">
@@ -254,113 +313,130 @@ export default function ContactUs() {
         </p>
       </div>
 
-      <div className="cp-card">
-        {/* Email */}
-        <div className="cp-field">
-          <label className="cp-label" htmlFor="email">
-            Your Email <span>*</span>
-          </label>
-          <input
-            className="cp-input"
-            id="email"
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            placeholder="you@email.com"
-          />
+      {/* ── Wrapper: mascot sits behind, card sits in front ── */}
+      <div className="cp-card-wrapper">
+
+        {/* Mascot — z-index: 1, BEHIND the card */}
+        <div className="cp-mascot">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/activitykid.png" alt="Sneaky kid peeking" />
         </div>
 
-        {/* Name + Age row */}
-        <div className="cp-row">
+        {/* Speech bubble — floats above everything */}
+        <div className="cp-bubble">
+          Fill it out! 📝
+        </div>
+
+        {/* Form card — z-index: 2, IN FRONT of mascot */}
+        <div className="cp-card">
+
+          {/* Email */}
           <div className="cp-field">
-            <label className="cp-label" htmlFor="childName">
-              Child's Name <span>*</span>
+            <label className="cp-label" htmlFor="email">
+              Your Email <span>*</span>
             </label>
             <input
               className="cp-input"
-              id="childName"
-              name="childName"
-              type="text"
-              value={form.childName}
+              id="email"
+              name="email"
+              type="email"
+              value={form.email}
               onChange={handleChange}
               required
-              placeholder="Child's name"
+              placeholder="you@email.com"
             />
           </div>
+
+          {/* Name + Age row */}
+          <div className="cp-row">
+            <div className="cp-field">
+              <label className="cp-label" htmlFor="childName">
+                Child's Name <span>*</span>
+              </label>
+              <input
+                className="cp-input"
+                id="childName"
+                name="childName"
+                type="text"
+                value={form.childName}
+                onChange={handleChange}
+                required
+                placeholder="Child's name"
+              />
+            </div>
+            <div className="cp-field">
+              <label className="cp-label" htmlFor="childAge">
+                Child's Age <span>*</span>
+              </label>
+              <input
+                className="cp-input"
+                id="childAge"
+                name="childAge"
+                type="number"
+                value={form.childAge}
+                onChange={handleChange}
+                min="0"
+                max="18"
+                required
+                placeholder="Age"
+              />
+            </div>
+          </div>
+
+          {/* Message */}
           <div className="cp-field">
-            <label className="cp-label" htmlFor="childAge">
-              Child's Age <span>*</span>
+            <label className="cp-label" htmlFor="message">
+              Message <span>*</span>
             </label>
-            <input
-              className="cp-input"
-              id="childAge"
-              name="childAge"
-              type="number"
-              value={form.childAge}
+            <textarea
+              className="cp-textarea"
+              id="message"
+              name="message"
+              rows={4}
+              value={form.message}
               onChange={handleChange}
-              min="0"
-              max="18"
               required
-              placeholder="Age"
+              placeholder="How can we help you?"
             />
           </div>
-        </div>
 
-        {/* Message */}
-        <div className="cp-field">
-          <label className="cp-label" htmlFor="message">
-            Message <span>*</span>
-          </label>
-          <textarea
-            className="cp-textarea"
-            id="message"
-            name="message"
-            rows={4}
-            value={form.message}
-            onChange={handleChange}
-            required
-            placeholder="How can we help you?"
-          />
-        </div>
-
-        {/* Consent */}
-        <div className="cp-consent">
-          <input
-            type="checkbox"
-            id="consent"
-            name="consent"
-            checked={form.consent}
-            onChange={handleChange}
-          />
-          <label htmlFor="consent">
-            I agree to receive updates and promotional content from Little
-            Berries, including advertisements and important notifications.
-          </label>
-        </div>
-
-        <hr className="cp-divider" />
-
-        <div className="cp-actions">
-          <button
-            className="cp-btn cp-btn-primary"
-            onClick={handleSubmit}
-            disabled={submitting}
-          >
-            {submitting ? "Sending…" : "✉ Send Message"}
-          </button>
-        </div>
-
-        {toast && (
-          <div
-            className={`cp-toast ${
-              toast.type === "error" ? "cp-toast-error" : "cp-toast-success"
-            }`}
-          >
-            {toast.msg}
+          {/* Consent */}
+          <div className="cp-consent">
+            <input
+              type="checkbox"
+              id="consent"
+              name="consent"
+              checked={form.consent}
+              onChange={handleChange}
+            />
+            <label htmlFor="consent">
+              I agree to receive updates and promotional content from Little
+              Berries, including advertisements and important notifications.
+            </label>
           </div>
-        )}
+
+          <hr className="cp-divider" />
+
+          <div className="cp-actions">
+            <button
+              className="cp-btn cp-btn-primary"
+              onClick={handleSubmit}
+              disabled={submitting}
+            >
+              {submitting ? "Sending…" : "✉ Send Message"}
+            </button>
+          </div>
+
+          {toast && (
+            <div
+              className={`cp-toast ${
+                toast.type === "error" ? "cp-toast-error" : "cp-toast-success"
+              }`}
+            >
+              {toast.msg}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

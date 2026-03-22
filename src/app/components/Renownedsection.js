@@ -212,7 +212,7 @@ export default function RenownedSection() {
               style={{ animation: "seesawTilt 3s ease-in-out infinite alternate" }}
             >
               <Image
-                src="/hero.png"
+                src="/renowedhero.png"
                 alt="Kids playing at Little Berries playschool"
                 width={500}
                 height={400}
