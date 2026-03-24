@@ -72,13 +72,9 @@ const Header = ({ isHomePage = false }) => {
                       }`}
                     >
                       {item.label}
-
-                      {/* Underline */}
                       <span
                         className={`absolute -bottom-1 left-0 h-0.5 bg-orange-400 transition-all duration-300 ${
-                          isActive
-                            ? "w-full"
-                            : "w-0 group-hover:w-full"
+                          isActive ? "w-full" : "w-0 group-hover:w-full"
                         }`}
                       />
                     </Link>
@@ -119,45 +115,94 @@ const Header = ({ isHomePage = false }) => {
       <AnimatePresence>
         {isOpen && (
           <>
+            {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 z-50 bg-black/40"
+              className="fixed inset-0 z-50 bg-black/50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
             />
 
+            {/* Drawer */}
             <motion.div
-              className="fixed top-0 right-0 z-50 h-full w-72 flex flex-col bg-[#e3f0fa]"
+              className="fixed top-0 right-0 z-50 h-full w-80 flex flex-col shadow-2xl"
+              style={{ backgroundColor: "#ffffff" }}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
             >
-              <div className="flex justify-between p-4 border-b">
-                <span className="font-bold">Menu</span>
-                <X onClick={() => setIsOpen(false)} />
+              {/* Drawer Header */}
+              <div
+                className="flex items-center justify-between px-5 py-4 border-b-2 border-purple-100"
+                style={{ backgroundColor: "#e3f0fa" }}
+              >
+                <div className="flex items-center gap-2">
+                  <img
+                    src="/logo.jpeg"
+                    alt="Little Berries Logo"
+                    className="h-8 w-8 rounded-full shadow"
+                  />
+                  <span className="text-lg font-extrabold text-purple-900">
+                    Little Berries
+                  </span>
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 rounded-full hover:bg-purple-100 transition-colors"
+                >
+                  <X className="h-5 w-5 text-purple-900" />
+                </button>
               </div>
 
-              <nav className="flex flex-col p-4 gap-2">
-                {navLinks.map((item) => {
+              {/* Nav Links */}
+              <nav className="flex flex-col px-4 py-6 gap-2 flex-1">
+                {navLinks.map((item, index) => {
                   const isActive =
                     item.href === "/"
                       ? pathname === "/"
                       : pathname.startsWith(item.href)
 
                   return (
-                    <Link
+                    <motion.div
                       key={item.label}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`px-4 py-3 rounded ${
-                        isActive
-                          ? "bg-yellow-100 text-orange-600"
-                          : "hover:bg-purple-100"
-                      }`}
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.07 }}
                     >
-                      {item.label}
-                    </Link>
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className={`flex items-center justify-between px-4 py-3.5 rounded-xl font-bold text-base transition-all duration-200 ${
+                          isActive
+                            ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-purple-900 shadow-md"
+                            : "text-gray-800 bg-gray-50 hover:bg-purple-50 hover:text-purple-800 border border-gray-100"
+                        }`}
+                      >
+                        <span>{item.label}</span>
+                        <ChevronRight
+                          className={`h-4 w-4 ${
+                            isActive ? "text-purple-900" : "text-gray-400"
+                          }`}
+                        />
+                      </Link>
+                    </motion.div>
                   )
                 })}
               </nav>
+
+              {/* Admissions CTA at bottom */}
+              <div className="px-4 pb-8">
+                <Link href="/contactus" onClick={() => setIsOpen(false)}>
+                  <motion.button
+                    className="w-full py-3.5 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 text-purple-900 font-extrabold text-base shadow-md"
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    Admissions
+                  </motion.button>
+                </Link>
+              </div>
             </motion.div>
           </>
         )}
