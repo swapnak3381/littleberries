@@ -1,33 +1,157 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 /* ─── DATA ─────────────────────────────────────────────────────────────────── */
 const photos = [
-  { id:"01", category:"Art & Craft",   title:"Rainbow Finger Painting", emoji:"🎨", color:"#0EA5E9", bg:"#E0F4FF", size:"large",  description:"Little hands creating big colorful worlds on canvas." },
-  { id:"02", category:"Outdoor Play",  title:"Garden Explorers",        emoji:"🌻", color:"#F4A261", bg:"#FFF3CD", size:"small",  description:"Discovering nature's wonders in our sunny garden." },
-  { id:"03", category:"Music & Dance", title:"Rhythm & Moves",           emoji:"🎵", color:"#FBBF24", bg:"#FEF9C3", size:"small",  description:"Tiny dancers making joyful music every morning." },
-  { id:"04", category:"Art & Craft",   title:"Clay Creations",           emoji:"🏺", color:"#E76F51", bg:"#FCE4D6", size:"small",  description:"Sculpting masterpieces with little fingers." },
-  { id:"05", category:"Outdoor Play",  title:"Water Play Day",           emoji:"💧", color:"#0096C7", bg:"#D6F0FA", size:"large",  description:"Splashing and learning about the world around us." },
-  { id:"06", category:"Celebrations",  title:"Birthday Parade",          emoji:"🎂", color:"#0EA5E9", bg:"#E0F4FF", size:"small",  description:"Every birthday is a magical special celebration." },
-  { id:"07", category:"Science",       title:"Little Scientists",        emoji:"🔬", color:"#52B788", bg:"#DFFFD8", size:"small",  description:"Exploring how the wonderful world works together." },
-  { id:"08", category:"Music & Dance", title:"Puppet Show",              emoji:"🎭", color:"#FBBF24", bg:"#FEF9C3", size:"small",  description:"Storytelling through imagination and creative play." },
-  { id:"09", category:"Science",       title:"Rainbow Experiments",      emoji:"🌈", color:"#457BE0", bg:"#E0ECFF", size:"small",  description:"Colors, light and wonderful scientific discoveries." },
-  { id:"10", category:"Celebrations",  title:"Harvest Festival",         emoji:"🍂", color:"#D4720B", bg:"#FDE8D8", size:"small",  description:"Celebrating seasons and togetherness as a family." },
+  {
+    id: "01",
+    category: "Celebrations",
+    title: "Annual Day Celebrations",
+    src: "/gallery/annual-day-banner.jpg",
+    color: "#E76F51",
+    bg: "#FCE4D6",
+    size: "large",
+    description: "A grand celebration of talents, milestones, and joyful performances by our little stars.",
+  },
+  {
+    id: "02",
+    category: "Outdoor Play",
+    title: "Field Trip Adventure",
+    src: "/gallery/field-trip.jpg",
+    color: "#52B788",
+    bg: "#DFFFD8",
+    size: "large",
+    description: "Exploring the world beyond the classroom — curiosity, discovery, and endless fun.",
+  },
+  {
+    id: "03",
+    category: "Outdoor Play",
+    title: "Play Area Fun – 1",
+    src: "/gallery/play-area-1.jpg",
+    color: "#0EA5E9",
+    bg: "#E0F4FF",
+    size: "small",
+    description: "Little ones enjoying active play, building strength and making new friends.",
+  },
+  {
+    id: "04",
+    category: "Outdoor Play",
+    title: "Play Area Fun – 2",
+    src: "/gallery/play-area-2.jpg",
+    color: "#F4A261",
+    bg: "#FFF3CD",
+    size: "small",
+    description: "Slides, swings, and laughter — our play area is pure joy every single day.",
+  },
+  {
+    id: "05",
+    category: "Outdoor Play",
+    title: "Play Area Fun – 3",
+    src: "/gallery/play-area-3.jpg",
+    color: "#0096C7",
+    bg: "#D6F0FA",
+    size: "small",
+    description: "Teamwork and outdoor energy bringing big smiles to every child's face.",
+  },
+  {
+    id: "06",
+    category: "Outdoor Play",
+    title: "Play Area Fun – 4",
+    src: "/gallery/play-area-4.jpg",
+    color: "#FBBF24",
+    bg: "#FEF9C3",
+    size: "small",
+    description: "Running, jumping, and playing — nurturing healthy bodies and happy hearts.",
+  },
+  {
+    id: "07",
+    category: "Outdoor Play",
+    title: "Play Area Fun – 5",
+    src: "/gallery/play-area-5.jpg",
+    color: "#457BE0",
+    bg: "#E0ECFF",
+    size: "small",
+    description: "Every corner of our play area is designed to spark imagination and movement.",
+  },
+  {
+    id: "08",
+    category: "Celebrations",
+    title: "School Poster Wall",
+    src: "/gallery/school-poster.jpg",
+    color: "#E76F51",
+    bg: "#FCE4D6",
+    size: "small",
+    description: "Colourful posters crafted by young minds — creativity displayed with pride.",
+  },
+  {
+    id: "09",
+    category: "Sports",
+    title: "Sports Day Highlights – 1",
+    src: "/gallery/sports-day-1.jpg",
+    color: "#52B788",
+    bg: "#DFFFD8",
+    size: "large",
+    description: "Racing, cheering, and celebrating — our annual sports day in full swing!",
+  },
+  {
+    id: "10",
+    category: "Sports",
+    title: "Sports Day Highlights – 2",
+    src: "/gallery/sports-day-2.jpg",
+    color: "#D4720B",
+    bg: "#FDE8D8",
+    size: "small",
+    description: "Every child a champion — the spirit of sportsmanship shining bright.",
+  },
+  {
+    id: "11",
+    category: "Art & Craft",
+    title: "Toy Cars Workshop",
+    src: "/gallery/toy-cars.jpg",
+    color: "#0EA5E9",
+    bg: "#E0F4FF",
+    size: "small",
+    description: "Building and racing toy cars — hands-on play that fuels young engineers.",
+  },
+  {
+    id: "12",
+    category: "Art & Craft",
+    title: "Train Model Display",
+    src: "/gallery/train-model.jpg",
+    color: "#FBBF24",
+    bg: "#FEF9C3",
+    size: "small",
+    description: "Creative model-making that teaches patience, precision, and lots of fun.",
+  },
+  {
+    id: "13",
+    category: "Outdoor Play",
+    title: "Zoo Visit",
+    src: "/gallery/zoo-visit.jpg",
+    color: "#52B788",
+    bg: "#DFFFD8",
+    size: "large",
+    description: "Meeting amazing animals up close — a day full of wonder and wild discoveries!",
+  },
 ];
 
 const stats = [
-  { value:"500+", label:"Happy Moments", emoji:"😊" },
-  { value:"120+", label:"Activities",    emoji:"🎯" },
-  { value:"5",    label:"Categories",    emoji:"🌟" },
-  { value:"∞",    label:"Memories Made", emoji:"💛" },
+  { value: "500+", label: "Happy Moments", emoji: "😊" },
+  { value: "120+", label: "Activities",    emoji: "🎯" },
+  { value: "5",    label: "Categories",    emoji: "🌟" },
+  { value: "∞",    label: "Memories Made", emoji: "💛" },
 ];
 
-const filters = ["All", "Art & Craft", "Outdoor Play", "Music & Dance", "Celebrations", "Science"];
+const filters = ["All", "Art & Craft", "Outdoor Play", "Sports", "Celebrations"];
 
 const categoryEmojis = {
-  All:"✨", "Art & Craft":"🎨", "Outdoor Play":"🌻",
-  "Music & Dance":"🎵", Celebrations:"🎉", Science:"🔬",
+  All: "✨",
+  "Art & Craft": "🎨",
+  "Outdoor Play": "🌻",
+  Sports: "🏅",
+  Celebrations: "🎉",
 };
 
 /* ─── HOOKS ─────────────────────────────────────────────────────────────────── */
@@ -66,7 +190,9 @@ function PhotoCard({ photo, index }) {
         opacity: inView ? 1 : 0,
         transform: inView ? "translateY(0) scale(1)" : "translateY(36px) scale(0.98)",
         transition: `opacity 0.6s ease ${delay}ms, transform 0.6s cubic-bezier(0.23,1,0.32,1) ${delay}ms, box-shadow 0.3s ease, border-color 0.3s ease`,
-        boxShadow: hovered ? `0 16px 40px ${photo.color}25, 0 4px 12px rgba(0,0,0,0.07)` : "0 2px 10px rgba(0,0,0,0.06)",
+        boxShadow: hovered
+          ? `0 16px 40px ${photo.color}25, 0 4px 12px rgba(0,0,0,0.07)`
+          : "0 2px 10px rgba(0,0,0,0.06)",
         border: `1.5px solid ${hovered ? photo.color + "44" : "transparent"}`,
         "--card-color": photo.color,
         "--card-bg": photo.bg,
@@ -75,59 +201,56 @@ function PhotoCard({ photo, index }) {
       {/* ── Visual Zone ── */}
       <div
         className={`pg-card-visual${isLarge ? " large" : ""}`}
-        style={{ background: photo.bg }}
+        style={{ background: photo.bg, position: "relative" }}
       >
-        {/* dot pattern */}
-        <svg style={{ position:"absolute", inset:0, width:"100%", height:"100%", opacity:0.2, pointerEvents:"none" }}>
-          {Array.from({length:5}).map((_,r) =>
-            Array.from({length:9}).map((_,c) => (
-              <circle key={`${r}-${c}`}
-                cx={`${c*12+6}%`} cy={`${r*22+11}%`}
-                r="1.8" fill={photo.color} />
-            ))
-          )}
-        </svg>
-
         {/* top accent line */}
         <div style={{
-          position:"absolute", top:0, left:0, right:0, height:"4px",
-          background:`linear-gradient(90deg, ${photo.color}, ${photo.color}66, transparent)`,
-          pointerEvents:"none",
+          position: "absolute", top: 0, left: 0, right: 0, height: "4px",
+          background: `linear-gradient(90deg, ${photo.color}, ${photo.color}66, transparent)`,
+          pointerEvents: "none", zIndex: 2,
         }} />
 
-        {/* emoji */}
-        <span
-          className="pg-card-emoji"
+        {/* Real photo */}
+        <Image
+          src={photo.src}
+          alt={photo.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
           style={{
-            fontSize: isLarge ? "clamp(64px,10vw,100px)" : "clamp(52px,8vw,80px)",
-            filter: `drop-shadow(0 6px 18px ${photo.color}55)`,
-            transform: hovered ? "scale(1.14) rotate(-5deg)" : "scale(1) rotate(0deg)",
-            transition: "transform 0.4s cubic-bezier(0.23,1,0.32,1)",
+            objectFit: "cover",
+            transform: hovered ? "scale(1.06)" : "scale(1)",
+            transition: "transform 0.5s cubic-bezier(0.23,1,0.32,1)",
           }}
-        >{photo.emoji}</span>
+        />
+
+        {/* overlay on hover */}
+        <div style={{
+          position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1,
+          background: `linear-gradient(135deg, ${photo.color}22, transparent 60%)`,
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.3s ease",
+        }} />
 
         {/* category pill */}
-        <span className="pg-cat-pill" style={{ color: photo.color, border:`1px solid ${photo.color}33` }}>
+        <span
+          className="pg-cat-pill"
+          style={{ color: photo.color, border: `1px solid ${photo.color}33`, zIndex: 3 }}
+        >
           {categoryEmojis[photo.category]} {photo.category}
         </span>
-
-        {/* shimmer on hover */}
-        <div style={{
-          position:"absolute", inset:0, pointerEvents:"none",
-          background:`linear-gradient(135deg, ${photo.color}10, transparent 60%)`,
-          opacity: hovered ? 1 : 0,
-          transition:"opacity 0.3s ease",
-        }} />
       </div>
 
       {/* ── Info Zone ── */}
       <div className="pg-card-body">
-        <h3 className="pg-card-title" style={{ color:"#1E2F3A" }}>{photo.title}</h3>
+        <h3 className="pg-card-title" style={{ color: "#1E2F3A" }}>{photo.title}</h3>
         <p className="pg-card-desc">{photo.description}</p>
-        <div className="pg-card-bar" style={{
-          width: hovered ? "56px" : "28px",
-          background:`linear-gradient(90deg, ${photo.color}, ${photo.color}44)`,
-        }} />
+        <div
+          className="pg-card-bar"
+          style={{
+            width: hovered ? "56px" : "28px",
+            background: `linear-gradient(90deg, ${photo.color}, ${photo.color}44)`,
+          }}
+        />
       </div>
     </div>
   );
@@ -135,14 +258,14 @@ function PhotoCard({ photo, index }) {
 
 /* ─── MARQUEE ─────────────────────────────────────────────────────────────── */
 function Marquee() {
-  const items = ["Art & Craft","Outdoor Play","Music & Dance","Celebrations","Science","Creative Play","Discovery","Imagination"];
+  const items = ["Art & Craft", "Outdoor Play", "Sports Day", "Celebrations", "Field Trips", "Creative Play", "Discovery", "Imagination"];
   const doubled = [...items, ...items];
   return (
     <div className="pg-marquee-wrap">
       <div className="pg-marquee-track">
         {doubled.map((item, i) => (
           <span key={i} className="pg-marquee-item">
-            <span style={{ color:"#0EA5E9" }}>✦</span>
+            <span style={{ color: "#0EA5E9" }}>✦</span>
             {item}
           </span>
         ))}
@@ -158,7 +281,7 @@ function Stat({ stat, index }) {
     <div ref={ref} className="pg-stat" style={{
       opacity: inView ? 1 : 0,
       transform: inView ? "translateY(0)" : "translateY(22px)",
-      transition: `opacity 0.6s ease ${index*90}ms, transform 0.6s ease ${index*90}ms`,
+      transition: `opacity 0.6s ease ${index * 90}ms, transform 0.6s ease ${index * 90}ms`,
     }}>
       <span className="pg-stat-emoji">{stat.emoji}</span>
       <span className="pg-stat-val">{stat.value}</span>
@@ -309,12 +432,10 @@ export default function PhotoGallery() {
            ═══════════════════════════════════════════════════════════ */
         @media (max-width: 768px) {
 
-          /* Section padding tighter on mobile */
           .pg-section {
             padding: 36px 14px 56px;
           }
 
-          /* ── FILTER BAR: horizontal scroll pill strip ── */
           .pg-filter-wrap {
             padding: 0 0 20px;
             margin: 0 -14px;
@@ -354,24 +475,20 @@ export default function PhotoGallery() {
             transition: transform 0.1s ease;
           }
 
-          /* ── GRID: 2-column masonry-feel bento layout ── */
           .pg-grid {
             grid-template-columns: 1fr 1fr;
             gap: 12px;
             padding: 0;
           }
 
-          /* Large cards span full width — feature card */
           .pg-col-large {
             grid-column: span 2;
           }
 
-          /* Small cards — alternating slide-in animation */
           .pg-col-small {
             grid-column: span 1;
           }
 
-          /* ── CARD: full mobile redesign ── */
           .pg-card {
             border-radius: 18px;
             overflow: hidden;
@@ -383,38 +500,35 @@ export default function PhotoGallery() {
               border-color 0.22s ease !important;
           }
 
-          /* Odd small cards slide from left */
           .pg-col-small:nth-child(odd) .pg-card {
             animation: mobileSlideLeft 0.55s cubic-bezier(0.23,1,0.32,1) both;
           }
-          /* Even small cards slide from right */
           .pg-col-small:nth-child(even) .pg-card {
             animation: mobileSlideRight 0.55s cubic-bezier(0.23,1,0.32,1) both;
           }
-          /* Large cards pop up */
           .pg-col-large .pg-card {
             animation: mobilePopUp 0.6s cubic-bezier(0.23,1,0.32,1) both;
           }
 
-          /* Staggered animation delays per card */
-          .pg-card[data-index="0"] { animation-delay: 0ms }
-          .pg-card[data-index="1"] { animation-delay: 60ms }
-          .pg-card[data-index="2"] { animation-delay: 120ms }
-          .pg-card[data-index="3"] { animation-delay: 180ms }
-          .pg-card[data-index="4"] { animation-delay: 240ms }
-          .pg-card[data-index="5"] { animation-delay: 300ms }
-          .pg-card[data-index="6"] { animation-delay: 360ms }
-          .pg-card[data-index="7"] { animation-delay: 420ms }
-          .pg-card[data-index="8"] { animation-delay: 480ms }
-          .pg-card[data-index="9"] { animation-delay: 540ms }
+          .pg-card[data-index="0"]  { animation-delay: 0ms }
+          .pg-card[data-index="1"]  { animation-delay: 60ms }
+          .pg-card[data-index="2"]  { animation-delay: 120ms }
+          .pg-card[data-index="3"]  { animation-delay: 180ms }
+          .pg-card[data-index="4"]  { animation-delay: 240ms }
+          .pg-card[data-index="5"]  { animation-delay: 300ms }
+          .pg-card[data-index="6"]  { animation-delay: 360ms }
+          .pg-card[data-index="7"]  { animation-delay: 420ms }
+          .pg-card[data-index="8"]  { animation-delay: 480ms }
+          .pg-card[data-index="9"]  { animation-delay: 540ms }
+          .pg-card[data-index="10"] { animation-delay: 600ms }
+          .pg-card[data-index="11"] { animation-delay: 660ms }
+          .pg-card[data-index="12"] { animation-delay: 720ms }
 
-          /* Touch press active state */
           .pg-card:active {
             transform: scale(0.965) !important;
             box-shadow: 0 4px 20px rgba(0,0,0,0.10) !important;
           }
 
-          /* ── LARGE card: horizontal layout ── */
           .pg-col-large .pg-card {
             flex-direction: row;
             min-height: 130px;
@@ -450,7 +564,6 @@ export default function PhotoGallery() {
             overflow: hidden;
           }
 
-          /* ── SMALL card: vertical, compact ── */
           .pg-col-small .pg-card {
             flex-direction: column;
             border: 1.5px solid transparent;
@@ -480,11 +593,6 @@ export default function PhotoGallery() {
             margin-top: 8px;
           }
 
-          /* Emoji sizes adjusted per card type */
-          .pg-col-large .pg-card-emoji { font-size: 52px !important; }
-          .pg-col-small .pg-card-emoji { font-size: 40px !important; }
-
-          /* Category pill — smaller on mobile */
           .pg-cat-pill {
             font-size: 8px !important;
             padding: 2px 7px !important;
@@ -492,12 +600,10 @@ export default function PhotoGallery() {
             left: 8px !important;
           }
 
-          /* ── HEADER mobile tweaks ── */
           .pg-title { font-size: 1.8rem; }
           .pg-subtitle { font-size: 13px; }
           .pg-header { padding-bottom: 24px; }
 
-          /* ── MARQUEE: slightly tighter ── */
           .pg-marquee-wrap { margin: 28px 0; }
         }
 
@@ -525,9 +631,7 @@ export default function PhotoGallery() {
             -webkit-box-orient: vertical;
             overflow: hidden;
           }
-          .pg-col-large .pg-card-emoji { font-size: 60px !important; }
           .pg-col-small .pg-card-visual { height: 95px !important; }
-          .pg-col-small .pg-card-emoji { font-size: 36px !important; }
           .pg-col-small .pg-card-title { font-size: 11px; }
         }
 
@@ -554,11 +658,6 @@ export default function PhotoGallery() {
         }
         .pg-card-visual.large {
           height: clamp(180px, 26vw, 280px);
-        }
-
-        .pg-card-emoji {
-          position: relative; z-index: 1;
-          user-select: none; line-height: 1;
         }
 
         .pg-cat-pill {
