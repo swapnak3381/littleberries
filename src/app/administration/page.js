@@ -79,16 +79,18 @@ const css = `
   .lb-hero-title {
     font-size: clamp(28px, 5vw, 52px);
     font-weight: 900;
-    color: #1e1b4b;
+    color: white;
     margin: 0 0 14px;
     line-height: 1.1;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
   }
   .lb-hero-sub {
     font-size: clamp(13px, 1.8vw, 17px);
-    color: #475569;
+    color: white;
     max-width: 480px;
     line-height: 1.7;
     margin: 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
   }
   .lb-hero-emoji {
     font-size: clamp(48px, 8vw, 90px);
@@ -271,7 +273,7 @@ export default function Administration() {
 
   {/* Background Image */}
   <img
-    src="/adminrenowedhero.png"
+    src="/infra/classroom1.png"
     alt="Hero Background"
     className="absolute inset-0 w-full h-full object-cover z-0"
   />
@@ -290,7 +292,7 @@ export default function Administration() {
   </div>
 
   {/* Emoji */}
-  <div className="lb-hero-emoji relative z-20">🏫</div>
+  
 </div>
 
       {/* Stats */}
@@ -307,17 +309,17 @@ export default function Administration() {
       </div>
 
       {/* Section header */}
-      <div className="lb-section-hdr">
+    {/*   <div className="lb-section-hdr">
         <h2 className="lb-section-title">Meet Our Leadership Team</h2>
         <div className="lb-divider" />
         <p className="lb-section-sub">
           Our administration team brings decades of early childhood education expertise,
           ensuring every child receives the best start in life.
         </p>
-      </div>
+      </div> */}
 
       {/* Staff grid */}
-      <div className="lb-grid">
+{/*       <div className="lb-grid">
         {staff.map((member) => (
           <div
             key={member.id}
@@ -364,7 +366,7 @@ export default function Administration() {
             </button>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* Vision / Mission / Values */}
       <div className="lb-vision">

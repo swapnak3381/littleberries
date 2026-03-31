@@ -12,9 +12,9 @@ const PARENT_REVIEWS = [
     child: "Mom of Aryan, 4 yrs",
     avatar: "👩‍💼",
     avatarBg: "#DBEAFE",
-    quote: "Little Berries transformed my shy little boy into a confident chatterbox in just two months. The teachers genuinely care!",
+    quote: "Little Berries transformed my shy little boy into a confident, expressive child in just two months. The teachers truly care and it shows every day ❤️",
     stars: 5,
-    tag: "Parent Review",
+    tag: "💬 Parent Love",
     tagColor: "#0EA5E9",
     tilt: "-2deg",
     tape: "#FFE066",
@@ -26,9 +26,9 @@ const PARENT_REVIEWS = [
     child: "Parents of Mia, 3 yrs",
     avatar: "👨‍👩‍👧",
     avatarBg: "#D6F5FF",
-    quote: "The STEM lab activities are incredible for this age. Mia comes home every day talking about what she discovered!",
+    quote: "The STEM activities are amazing for this age. Mia comes home excited, curious, and full of stories about her discoveries 🔬✨",
     stars: 5,
-    tag: "Parent Review",
+    tag: "💬 Happy Parents",
     tagColor: "#0EA5E9",
     tilt: "2.5deg",
     tape: "#B5EAD7",
@@ -40,9 +40,9 @@ const PARENT_REVIEWS = [
     child: "Mom of Kiran, 5 yrs",
     avatar: "👩‍🦱",
     avatarBg: "#FFF3CD",
-    quote: "Best decision we ever made. The infrastructure is top-notch, hygiene is impeccable, and the love the staff shows is unmatched.",
+    quote: "The best decision we made! Excellent infrastructure, top-level hygiene, and incredibly loving staff 🌟",
     stars: 5,
-    tag: "Parent Review",
+    tag: "💬 Trusted Choice",
     tagColor: "#0EA5E9",
     tilt: "-1.5deg",
     tape: "#BAE6FD",
@@ -54,9 +54,9 @@ const PARENT_REVIEWS = [
     child: "Dad of Rohan, 4 yrs",
     avatar: "👨‍💻",
     avatarBg: "#E8D5FF",
-    quote: "Rohan's communication skills have improved dramatically. The storytelling and reading programs are outstanding.",
+    quote: "Rohan’s communication skills improved dramatically. The storytelling and reading programs are simply outstanding 📚✨",
     stars: 5,
-    tag: "Parent Review",
+    tag: "💬 Real Results",
     tagColor: "#0EA5E9",
     tilt: "1deg",
     tape: "#C7CEEA",
@@ -68,9 +68,9 @@ const PARENT_REVIEWS = [
     child: "Mom of Zara, 3.5 yrs",
     avatar: "👩‍🎨",
     avatarBg: "#FFE4B5",
-    quote: "I love how they balance academics with play. Zara is always excited to go to school — that says everything!",
+    quote: "I love how they balance learning and play. Zara is always excited to go to school — that says everything 😊",
     stars: 5,
-    tag: "Parent Review",
+    tag: "💬 Parent Approved",
     tagColor: "#0EA5E9",
     tilt: "-3deg",
     tape: "#FFDAC1",
@@ -82,9 +82,9 @@ const PARENT_REVIEWS = [
     child: "Parents of Dev, 4 yrs",
     avatar: "👨‍👩‍👦",
     avatarBg: "#D4EDDA",
-    quote: "The daily progress updates and parent-teacher communication is exceptional. We always feel involved in Dev's journey.",
+    quote: "The daily updates and communication are exceptional. We always feel connected to Dev’s learning journey 📈❤️",
     stars: 5,
-    tag: "Parent Review",
+    tag: "💬 Engaged Parents",
     tagColor: "#0EA5E9",
     tilt: "2deg",
     tape: "#B5EAD7",
@@ -96,14 +96,15 @@ const STUDENT_ACHIEVEMENTS = [
     id: "s1",
     type: "student",
     name: "Arjun K.",
-    age: "Age 5",
+    age: "Graduated 2024",
     avatar: "👦",
     avatarBg: "#D6F5FF",
-    achievement: "Inter-School Drawing Champion 🏆",
-    desc: "Won first place in the citywide art competition with his painting 'My School Garden'.",
-    badge: "🥇 Gold Medal",
-    tag: "Achievement",
-    tagColor: "#F4A261",
+    image: "/narayana1.jpeg",
+    achievement: "Selected for Narayana School 🏫",
+    desc: "Secured admission in a top CBSE school. Arjun showed excellent growth in academics and confidence during his journey at Little Berries.",
+    badge: "🏆 Selected",
+    tag: "🎓 Achievement",
+    tagColor: "#10B981",
     tilt: "2deg",
     tape: "#FFE066",
   },
@@ -111,14 +112,15 @@ const STUDENT_ACHIEVEMENTS = [
     id: "s2",
     type: "student",
     name: "Ananya R.",
-    age: "Age 4",
+    age: "Graduated 2024",
     avatar: "👧",
     avatarBg: "#D1FAE5",
-    achievement: "Best Storyteller Award 📖",
-    desc: "Narrated an original story at the district-level Tiny Voices competition and won hearts!",
-    badge: "🎤 Speaker",
-    tag: "Achievement",
-    tagColor: "#F4A261",
+    image: "/narayana2.jpeg",
+    achievement: "Selected for Narayana School 🏫",
+    desc: "Awarded a full scholarship for her exceptional academic performance and leadership qualities. 100% tuition fee waived for 2 years 🌟",
+    badge: "🎓 Full Scholarship",
+    tag: "🌟 Top Performer",
+    tagColor: "#10B981",
     tilt: "-1.5deg",
     tape: "#B5EAD7",
   },
@@ -126,14 +128,15 @@ const STUDENT_ACHIEVEMENTS = [
     id: "s3",
     type: "student",
     name: "Riya & Tara",
-    age: "Age 5",
+    age: "Graduated 2024",
     avatar: "👧👧",
     avatarBg: "#FFF3CD",
-    achievement: "Dance Duo Champions 💃",
-    desc: "Performed a classical-fusion duet and won the Kalakranti Regional Dance Competition.",
-    badge: "🏆 Winners",
-    tag: "Achievement",
-    tagColor: "#F4A261",
+    image: "/gensis.jpeg",
+    achievement: "Selected for Genesis School 📚",
+    desc: "Both sisters secured admission with a 50% fee waiver. Their all-round development and confidence stood out.",
+    badge: "👭 Dual Achievers",
+    tag: "🎓 Achievement",
+    tagColor: "#10B981",
     tilt: "3deg",
     tape: "#BAE6FD",
   },
@@ -141,14 +144,15 @@ const STUDENT_ACHIEVEMENTS = [
     id: "s4",
     type: "student",
     name: "Kabir M.",
-    age: "Age 5",
+    age: "Graduated 2023",
     avatar: "👦",
     avatarBg: "#E8D5FF",
-    achievement: "Junior Science Whiz 🔬",
-    desc: "Demonstrated a volcano experiment at the Science Mela and was awarded 'Tiny Einstein'.",
-    badge: "🔭 Explorer",
-    tag: "Achievement",
-    tagColor: "#F4A261",
+    image: "/gensis1.jpeg",
+    achievement: "Selected for Genesis School 📚",
+    desc: "Recognized for strong STEM skills and analytical thinking. Awarded a 40% tuition fee concession 🔬",
+    badge: "🧠 STEM Star",
+    tag: "🌟 Merit Based",
+    tagColor: "#10B981",
     tilt: "-2.5deg",
     tape: "#C7CEEA",
   },
@@ -156,14 +160,15 @@ const STUDENT_ACHIEVEMENTS = [
     id: "s5",
     type: "student",
     name: "Zoe Thomas",
-    age: "Age 4",
+    age: "Graduated 2024",
     avatar: "👧",
     avatarBg: "#D4EDDA",
-    achievement: "Yoga & Mindfulness Star 🧘",
-    desc: "Represented our school at the International Children's Wellness Day, performing 12 asanas.",
-    badge: "🌟 Star",
-    tag: "Achievement",
-    tagColor: "#F4A261",
+    image: "/saitechno.jpeg",
+    achievement: "Selected for Sai Techno School 🏫",
+    desc: "Chosen under a special category for holistic development. Received complimentary admission and 1 year of free education 🎉",
+    badge: "🎁 Special Admission",
+    tag: "🌈 All-Rounder",
+    tagColor: "#10B981",
     tilt: "1.5deg",
     tape: "#FFDAC1",
   },
@@ -171,14 +176,15 @@ const STUDENT_ACHIEVEMENTS = [
     id: "s6",
     type: "student",
     name: "Ishaan P.",
-    age: "Age 5",
+    age: "Graduated 2024",
     avatar: "👦",
     avatarBg: "#FFE4B5",
-    achievement: "Spelling Bee Runner-Up 🐝",
-    desc: "Reached the finals of the state-level Kiddo Spellathon, spelling 48 words correctly!",
-    badge: "🐝 Finalist",
-    tag: "Achievement",
-    tagColor: "#F4A261",
+    image: "/nextzen.jpeg",
+    achievement: "Selected for NextZen School 🎖️",
+    desc: "Awarded a 35% fee concession for outstanding communication skills and academic excellence 📚✨",
+    badge: "✨ Rising Star",
+    tag: "🎓 Achievement",
+    tagColor: "#10B981",
     tilt: "-1deg",
     tape: "#FFE066",
   },
@@ -221,16 +227,18 @@ function PolaroidCard({ item, onClick }) {
 
         {/* Photo area */}
         <div
-          className="w-full rounded-sm flex flex-col items-center justify-center gap-2 py-5"
+          className="w-full rounded-sm flex flex-col items-center justify-center gap-2 py-5 relative overflow-hidden"
           style={{ background: item.avatarBg, minHeight: "130px" }}
         >
-          <span style={{ fontSize: "52px", lineHeight: 1 }}>{item.avatar}</span>
-          <span
-            className="text-xs font-bold px-3 py-1 rounded-full"
-            style={{ background: item.tagColor, color: "#fff", fontFamily: "'Baloo 2', cursive" }}
-          >
-            {item.tag}
-          </span>
+          {item.image ? (
+            <img
+              src={item.image}
+              alt={item.name}
+              className="w-full h-full object-cover absolute inset-0"
+            />
+          ) : (
+            <span style={{ fontSize: "52px", lineHeight: 1 }}>{item.avatar}</span>
+          )}
         </div>
 
         {/* Card body */}
@@ -311,16 +319,18 @@ function Modal({ item, onClose }) {
 
         {/* Photo */}
         <div
-          className="flex flex-col items-center justify-center gap-3 pt-12 pb-6 px-6"
-          style={{ background: item.avatarBg }}
+          className="relative flex flex-col items-center justify-center gap-3 pt-12 pb-6 px-6 overflow-hidden"
+          style={{ background: item.avatarBg, minHeight: "250px" }}
         >
-          <span style={{ fontSize: "80px", lineHeight: 1 }}>{item.avatar}</span>
-          <span
-            className="text-sm font-bold px-4 py-1.5 rounded-full text-white"
-            style={{ background: item.tagColor }}
-          >
-            {item.tag}
-          </span>
+          {item.image ? (
+            <img
+              src={item.image}
+              alt={item.name}
+              className="w-full h-full object-cover absolute inset-0"
+            />
+          ) : (
+            <span style={{ fontSize: "80px", lineHeight: 1 }}>{item.avatar}</span>
+          )}
         </div>
 
         {/* Content */}
@@ -482,7 +492,7 @@ export default function CommunitySection() {
         </div>
 
         {/* ── Row 1: Parent Reviews → scrolls LEFT ── */}
-        <div className="mb-4">
+{/*         <div className="mb-4">
           <div className="px-8 mb-4 flex items-center gap-3">
             <span className="text-2xl">👨‍👩‍👧‍👦</span>
             <h3 className="text-lg font-black text-gray-700" style={{ fontFamily: "'Baloo 2', cursive" }}>
@@ -496,7 +506,7 @@ export default function CommunitySection() {
           <div className="marquee-left-row">
             <MarqueeRow items={PARENT_REVIEWS} direction="left" speed={40} onCardClick={setActiveCard} />
           </div>
-        </div>
+        </div> */}
 
         {/* ── Row 2: Student Achievements → scrolls RIGHT ── */}
         <div className="mt-6">
@@ -516,7 +526,7 @@ export default function CommunitySection() {
         </div>
 
         {/* ── Bottom CTA ── */}
-        <div className="text-center mt-16 px-6">
+{/*         <div className="text-center mt-16 px-6">
           <div className="inline-flex flex-col sm:flex-row items-center gap-4 bg-white/70 backdrop-blur-sm rounded-3xl px-8 py-6 shadow-md border border-sky-100">
             <div className="text-left">
               <p className="text-lg font-black text-gray-800" style={{ fontFamily: "'Baloo 2', cursive" }}>
@@ -533,7 +543,7 @@ export default function CommunitySection() {
               Share Your Story 💌
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* ── Modal ── */}
