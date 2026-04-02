@@ -24,7 +24,7 @@ const CONTACT_ITEMS = [
     icon: "📞",
     text: "+91-7989523822",
     color: "#16a34a",
-    href: "tel:+919010684054",
+    href: "tel:+917989523822",
   },
 ];
 
