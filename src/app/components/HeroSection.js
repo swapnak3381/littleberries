@@ -98,9 +98,10 @@ export default function HeroSection() {
         .layer-hero-img {
           position: absolute;
           left: 50%;
-          top: 58%;
+          top: 62%;
           transform: translate(-50%, -50%);
-          width: clamp(220px, 55vw, 400px);
+          width: clamp(320px, 85vw, 680px);
+          height: auto;
           object-fit: contain;
           pointer-events: none;
           user-select: none;
@@ -109,8 +110,8 @@ export default function HeroSection() {
         }
         @media (min-width: 768px) {
           .layer-hero-img {
-            top: 48%;
-            width: clamp(200px, 28vw, 420px);
+            top: 68%;
+            width: clamp(480px, 56vw, 740px);
           }
         }
 
@@ -325,7 +326,7 @@ export default function HeroSection() {
 
               {/* ── LAYER 4 · Hero image + foreground ── */}
               <div data-parallax-layer="4" className="absolute inset-0 pointer-events-none">
-                <img src="/hero1.png" alt="Little Berries" className="layer-hero-img" />
+                <img src="/hero2.png" alt="Little Berries" className="layer-hero-img" />
                 <div className="absolute bottom-0 left-0 right-0">
                   <svg viewBox="0 0 1440 120" className="w-full h-[65px] md:h-[110px]" preserveAspectRatio="none" fill="none">
                     <path d="M0,80 C120,40 200,100 360,70 C520,40 600,90 720,65 C840,40 960,85 1080,60 C1200,35 1320,80 1440,55 L1440,120 L0,120Z" fill="#bbf7d0" opacity="0.5" />

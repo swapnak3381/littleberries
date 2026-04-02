@@ -27,9 +27,9 @@ const PROGRAMS = [
 ];
 
 const STATS = [
-  { num: "500+", label: "Happy Kids",      color: "#e53e3e" },
-  { num: "15+",  label: "Expert Teachers", color: "#7c3aed" },
-  { num: "10+",  label: "Years of Joy",    color: "#16a34a" },
+  { num: "320+", label: "Happy Kids",      color: "#e53e3e" },
+  { num: "5+",  label: "Expert Teachers", color: "#7c3aed" },
+  { num: "12+",  label: "Years of Joy",    color: "#16a34a" },
 ];
 
 const CONFETTI = [

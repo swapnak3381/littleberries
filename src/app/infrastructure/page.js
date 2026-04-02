@@ -291,8 +291,8 @@ export default function InfrastructureSection() {
           {/* Stats row */}
           <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
             {[
-              { val: "12,000", unit: "sq.ft", label: "Campus Area", color: "#0288D1" },
-              { val: "8+",     unit: "",       label: "Dedicated Spaces", color: "#C2185B" },
+              { val: "170", unit: "sq.Yards", label: "Campus Area", color: "#0288D1" },
+              { val: "5+",     unit: "",       label: "Dedicated Spaces", color: "#C2185B" },
               { val: "100%",   unit: "",       label: "CCTV Covered", color: "#2E7D32" },
               { val: "24×7",   unit: "",       label: "Security", color: "#7B1FA2" },
             ].map(({ val, unit, label, color }) => (

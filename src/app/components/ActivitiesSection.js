@@ -34,7 +34,7 @@ const ACTIVITIES = [
     alt: "Kids learning chess with a teacher",
     description: "Chess sharpens young minds like nothing else. Our certified coaches guide children through strategy, patience and critical thinking — turning every move into a life lesson.",
     benefits: ["Boosts IQ & Focus", "Strategic Thinking", "Memory Power", "Emotional Control"],
-    age: "Ages 3–12",
+    age: "Ages 4-6",
     schedule: "Mon · Wed · Fri",
     birthAnim: "birthLeft",   // slides in from left
     delay: "0s",
@@ -51,7 +51,7 @@ const ACTIVITIES = [
     alt: "Kids dancing joyfully in a class",
     description: "Dance is where creativity meets confidence! Our fun-filled sessions blend rhythm, coordination and self-expression — helping children discover their inner performer.",
     benefits: ["Coordination & Balance", "Confidence Builder", "Creative Expression", "Physical Fitness"],
-    age: "Ages 2–10",
+    age: "Ages 2–6",
     schedule: "Tue · Thu · Sat",
     birthAnim: "birthUp",     // rises up from below
     delay: "0.18s",
@@ -68,7 +68,7 @@ const ACTIVITIES = [
     alt: "Kids in taekwondo uniforms smiling",
     description: "Taekwondo builds more than kicks — it builds character. Our certified instructors teach discipline, respect and perseverance through structured belt-progression programmes.",
     benefits: ["Self-Defence Skills", "Discipline & Focus", "Body Strength", "Respect & Values"],
-    age: "Ages 4–14",
+    age: "Ages 2–6",
     schedule: "Mon · Wed · Sat",
     birthAnim: "birthRight",  // slides in from right
     delay: "0.36s",
@@ -259,29 +259,7 @@ function ActivityCard({ act, idx }) {
         </div>
 
         {/* CTA button */}
-        <div className="mt-auto pt-1">
-          <button
-            className="w-full flex items-center justify-center gap-2 text-white font-extrabold text-sm py-3.5 rounded-2xl transition-all duration-300 active:scale-95"
-            style={{
-              background: `linear-gradient(135deg, ${act.accentColor} 0%, ${act.accentColor}cc 100%)`,
-              boxShadow: hovered
-                ? `0 8px 28px ${act.accentColor}55`
-                : `0 4px 14px ${act.accentColor}33`,
-              transform: hovered ? "translateY(-2px)" : "translateY(0)",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              fontFamily: "'Baloo 2', cursive",
-            }}
-          >
-            Join {act.title} Class
-            <svg
-              className="w-4 h-4"
-              style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.3s ease" }}
-              fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
+
       </div>
     </div>
   );

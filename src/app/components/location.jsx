@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 const CONTACT_ITEMS = [
   {
     icon: "🗓️",
-    text: "Monday to Saturday | 10 AM to 5 PM",
+    text: "Monday to Saturday | 9 AM to 5 PM",
     color: "#7c3aed",
   },
   {
     icon: "📍",
-    text: "Plot No 30/1, Durganagar Colony, Kista Reddy Pet, Hyderabad, Telangana 502319",
+    text: "H.No.5-77/149/Part-A, Kista Reddy Pet, Hyderabad, Telangana 502319",
     color: "#e53e3e",
     href: "https://maps.app.goo.gl/syzEBwu1aJNDbP5z7",
   },
