@@ -100,7 +100,7 @@ export default function HeroSection() {
           left: 50%;
           top: 62%;
           transform: translate(-50%, -50%);
-          width: clamp(320px, 85vw, 680px);
+          width: clamp(1020px, 95vw, 2100px);
           height: auto;
           object-fit: contain;
           pointer-events: none;
@@ -122,7 +122,7 @@ export default function HeroSection() {
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
-          padding: 10% 6% 0;
+          padding: 12% 6% 0;
           pointer-events: none;
           z-index: 6;
         }
@@ -131,16 +131,17 @@ export default function HeroSection() {
         .hero-left {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 16px;
           width: 46%;
           max-width: 280px;
           pointer-events: auto;
         }
 
-        /* On mobile, shrink font so it doesn't crowd shinchan */
+        /* On mobile, increase font so it fills upper space */
         .hero-left h1 {
-          font-size: clamp(20px, 6vw, 48px);
+          font-size: clamp(32px, 9vw, 56px);
           line-height: 1.2;
+          font-weight: 900;
         }
 
         @media (min-width: 768px) {
@@ -210,10 +211,15 @@ export default function HeroSection() {
           left: 0; right: 0;
           display: flex;
           justify-content: center;
+          padding: 0 20px;
           z-index: 20;
           pointer-events: none;
         }
-        .hero-mobile-cta button { pointer-events: auto; }
+        .hero-mobile-cta button {
+          pointer-events: auto;
+          width: 100%;
+          max-width: 280px;
+        }
         @media (min-width: 768px) {
           .hero-mobile-cta { display: none; }
         }
