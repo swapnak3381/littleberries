@@ -42,7 +42,7 @@ const staff = [
 ];
 
 const stats = [
-  { label: "Total Students", value: "250+", icon: "🎒", color: "#7c3aed", bg: "#f3e8ff" },
+  { label: "Total Students", value: "300+", icon: "🎒", color: "#7c3aed", bg: "#f3e8ff" },
   { label: "Staff Members", value: "5", icon: "👩‍🏫", color: "#f59e0b", bg: "#fef3c7" },
   { label: "Years of Excellence", value: "12", icon: "⭐", color: "#3b82f6", bg: "#dbeafe" },
   { label: "Happy Families", value: "290+", icon: "👨‍👩‍👧", color: "#10b981", bg: "#d1fae5" },

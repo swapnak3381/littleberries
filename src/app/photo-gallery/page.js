@@ -863,7 +863,7 @@ export default function PhotoGallery() {
 
         {/* ── CTA ── */}
         <div className="pg-cta-wrap">
-          <a href="/admissions" className="pg-cta-primary">✦ Join Our Family</a>
+         
           <a href="/contactus" className="pg-cta-secondary">Contact Us →</a>
         </div>
       </section>

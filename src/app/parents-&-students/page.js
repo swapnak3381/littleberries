@@ -473,7 +473,7 @@ export default function CommunitySection() {
           {/* Summary stats */}
           <div className="flex flex-wrap items-center justify-center gap-5 mt-8">
             {[
-              { val: "300+", label: "Happy Families",   emoji: "👨‍👩‍👧", color: "#0EA5E9" },
+              { val: "290+", label: "Happy Families",   emoji: "👨‍👩‍👧", color: "#0EA5E9" },
               { val: "5.0★", label: "Parent Rating",    emoji: "⭐",     color: "#FFD700" },
              
               { val: "100%", label: "Would Recommend",  emoji: "💚",     color: "#4CAF50" },
