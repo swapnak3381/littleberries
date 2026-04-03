@@ -390,7 +390,7 @@ const css = `
 
 // ── Replace this URL with your deployed Google Apps Script URL ──
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbwJz_ZfBbi7Qq8yib67FZWZUMT1jbNDiG5LXfb_P23bDPEyeNbAIw1zXUNtrdUDUS0MDg/exec";
+  "https://script.google.com/macros/s/AKfycbyrZiCoyiG4ueqLYgKfMLM1W3JaN9PJ6m5imlbKOJuH0c7eFiN1HxTu6uKNOTF_hVHjjQ/exec";
 
 async function sendToGoogleSheet(data) {
   await fetch(GOOGLE_SCRIPT_URL, {
